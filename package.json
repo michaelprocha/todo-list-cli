@@ -1,0 +1,24 @@
+{
+  "name": "todo-list-cli",
+  "version": "1.0.0",
+  "description": "todo list CLI",
+  "main": "./src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelprocha/todo-list-cli.git"
+  },
+  "keywords": [
+    "todo-list",
+    "cli",
+    "fs"
+  ],
+  "author": "Michael Rocha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelprocha/todo-list-cli/issues"
+  },
+  "homepage": "https://github.com/michaelprocha/todo-list-cli#readme"
+}
