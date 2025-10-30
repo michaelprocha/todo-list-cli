@@ -1,48 +1,29 @@
 import chalk from "chalk";
-import fs from "fs";
-import path from "path";
-import Table from "cli-table3";
+import { readDatabase } from "./read.db.js";
+import Enquirer from "enquirer";
+
+const enquirer = new Enquirer();
 
 // console.log(chalk.blue(new Date().toLocaleDateString("pt-BR"))); para criar tarefa
-const fullPath = path.join(process.cwd(), "src/database/db.json");
 
-export default function home() {
-	console.log(chalk.blue(`Todo list`));
-	if (fs.existsSync(fullPath)) {
-		try {
-			const dados = fs.readFileSync(fullPath, "utf8");
-			const dadosFormatado = JSON.parse(dados).tasks;
-			console.table(JSON.parse(dados).tasks);
-			var table = new Table({
-				head: [
-					chalk.blue("ID"),
-					chalk.blue("Tarefa"),
-					chalk.blue("Criado"),
-					chalk.blue("Finalizado")
-				],
-			});
-			dadosFormatado.forEach((element) => {
-				if (element.done) {
-					table.push([
-						chalk.green(element.id),
-						chalk.green(element.task),
-						chalk.green(element.createdAt),
-						chalk.green(element.done)
-					]);
-				} else {
-					table.push([
-						chalk.red(element.id),
-						chalk.red(element.task),
-						chalk.red(element.createdAt),
-						chalk.red(element.done)
-					]);
-				}
-			});
-			console.log(table.toString());
-		} catch (erro) {
-			console.error(erro);
-		}
+export default async function home() {
+	readDatabase();
+	const menu = await enquirer.prompt({
+		type: "select",
+		name: "choice",
+		message: "Escolha sua cor favorita:",
+		choices: [chalk.blue("Adicionar tarefa"), chalk.yellow("Editar tarefa"), chalk.red("Remover tarefa"), chalk.green("Completar tarefa"), chalk.bgWhite(chalk.black("Sair"))],
+	});
+
+	if (menu.choice === "Adicionar tarefa") {
+		console.log(`${menu.choice} if 1`);
+	} else if (menu.choice === "Editar tarefa") {
+		console.log(`${menu.choice} else if 2`);
+	} else if (menu.choice === "Remover tarefa") {
+		console.log(`${menu.choice} else if 3`);
+	} else if (menu.choice === "Completar tarefa") {
+		console.log(`${menu.choice} else if 4`);
 	} else {
-		console.log("Arquivo não encontrado.");
+		console.log(`${menu.choice} else 5`);
 	}
 }
