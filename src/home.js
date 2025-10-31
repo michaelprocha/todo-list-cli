@@ -10,7 +10,7 @@ export default async function home() {
 	const menu = await enquirer.prompt({
 		type: "select",
 		name: "choice",
-		message: "Escolha sua cor favorita:",
+		message: "Selecione a opção desejada:",
 		choices: [
 			{ name: "Adicionar tarefa", message: chalk.blue("Adicionar tarefa") },
 			{ name: "Editar tarefa", message: chalk.yellow("Editar tarefa") },
@@ -22,16 +22,16 @@ export default async function home() {
 
 	if (menu.choice === "Adicionar tarefa") {
 		await add();
-		home();
+		await home();
 	} else if (menu.choice === "Editar tarefa") {
 		console.log(`${menu.choice} else if 2`);
-		home();
+		await home();
 	} else if (menu.choice === "Remover tarefa") {
 		console.log(`${menu.choice} else if 3`);
-		home();
+		await home();
 	} else if (menu.choice === "Completar tarefa") {
 		console.log(`${menu.choice} else if 4`);
-		home();
+		await home();
 	} else {
 		console.log(`${menu.choice} else 5`);
 	}

@@ -6,20 +6,20 @@ const fullPath = path.join(process.cwd(), "src/database/db.json");
 
 export default class Task {
 	constructor(name) {
-		this.name = name;
-		this.createdAt = new Date().toLocaleDateString("pt-BR");
-		this.done = false;
 		if (fs.existsSync(fullPath)) {
 			try {
 				const data = fs.readFileSync(fullPath, "utf8");
 				const tasks = JSON.parse(data).tasks;
 				this.id = assignId(...tasks);
 			} catch (erro) {
-				console.error(chalk.bgRed(erro));
+				console.error(chalk.bgRed(erro.message));
 			}
 		} else {
 			console.error(chalk.bgRed("Banco de dados não encontrado."));
 		}
+		this.task = name;
+		this.createdAt = new Date().toLocaleDateString("pt-BR");
+		this.done = false;
 	}
 }
 

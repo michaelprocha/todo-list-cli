@@ -13,27 +13,28 @@ export default async function add() {
 		name: "name",
 		message: "Escreva o nome da tarefa",
 	});
-	console.log(nameTask)
 	if (fs.existsSync(fullPath)) {
 		try {
 			const data = fs.readFileSync(fullPath, "utf8");
 			const formattedData = JSON.parse(data);
 			const newTask = new Task(nameTask.name);
 			const tasks = [...formattedData.tasks];
-            tasks.push(newTask);
-            formattedData.tasks = tasks;
-            addDatabase(JSON.stringify(formattedData));
+			tasks.push(newTask);
+			formattedData.tasks = tasks;
+			await addDatabase(formattedData);
 		} catch (erro) {
-			console.error(chalk.bgRed(erro));
+			console.error(chalk.bgRed(erro.message));
 		}
 	} else {
 		console.error(chalk.bgRed("Banco de dados não encontrado."));
 	}
 }
 
-function addDatabase(formattedData) {
-	fs.writeFile(fullPath, formattedData, (erro) => {
-		if (erro) throw erro;
-		console.log("Arquivo criado com sucesso!");
-	});
+async function addDatabase(formattedData) {
+	try {
+		await fs.promises.writeFile(fullPath, JSON.stringify(formattedData, null, 2));
+		console.log(chalk.bgGreen("Tarefa adicionada com sucesso!"));
+	} catch (erro) {
+		console.error(chalk.bgRed(erro.message));
+	}
 }
