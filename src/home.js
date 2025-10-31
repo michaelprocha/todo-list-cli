@@ -1,10 +1,9 @@
 import chalk from "chalk";
 import { readDatabase } from "./read.db.js";
 import Enquirer from "enquirer";
+import add from "./add.js";
 
 const enquirer = new Enquirer();
-
-// console.log(chalk.blue(new Date().toLocaleDateString("pt-BR"))); para criar tarefa
 
 export default async function home() {
 	readDatabase();
@@ -12,18 +11,29 @@ export default async function home() {
 		type: "select",
 		name: "choice",
 		message: "Escolha sua cor favorita:",
-		choices: [chalk.blue("Adicionar tarefa"), chalk.yellow("Editar tarefa"), chalk.red("Remover tarefa"), chalk.green("Completar tarefa"), chalk.bgWhite(chalk.black("Sair"))],
+		choices: [
+			{ name: "Adicionar tarefa", message: chalk.blue("Adicionar tarefa") },
+			{ name: "Editar tarefa", message: chalk.yellow("Editar tarefa") },
+			{ name: "Remover tarefa", message: chalk.red("Remover tarefa") },
+			{ name: "Completar tarefa", message: chalk.green("Completar tarefa") },
+			{ name: "Sair", message: chalk.bgWhite(chalk.black("Sair")) },
+		],
 	});
 
 	if (menu.choice === "Adicionar tarefa") {
-		console.log(`${menu.choice} if 1`);
+		await add();
+		home();
 	} else if (menu.choice === "Editar tarefa") {
 		console.log(`${menu.choice} else if 2`);
+		home();
 	} else if (menu.choice === "Remover tarefa") {
 		console.log(`${menu.choice} else if 3`);
+		home();
 	} else if (menu.choice === "Completar tarefa") {
 		console.log(`${menu.choice} else if 4`);
+		home();
 	} else {
 		console.log(`${menu.choice} else 5`);
 	}
+	return;
 }

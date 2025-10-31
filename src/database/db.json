@@ -1,8 +1,1 @@
-{
-  "tasks": 
-    [
-        {"id": 1, "task": "Fazer compra", "createdAt": "14/01/2025", "done": false},
-        {"id": 2, "task": "Limpar o chão", "createdAt": "20/03/2025", "done": true},
-        {"id": 3, "task": "Arrumar a cama", "createdAt": "05/02/2025", "done": false}
-    ]
-}
+{"tasks":[{"id":1,"task":"Fazer compra","createdAt":"14/01/2025","done":false},{"id":2,"task":"Limpar o chão","createdAt":"20/03/2025","done":true},{"id":3,"task":"Arrumar a cama","createdAt":"05/02/2025","done":false},{"name":"teste","createdAt":"31/10/2025","done":false,"id":224503}]}
