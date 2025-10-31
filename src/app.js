@@ -1,4 +1,3 @@
-import chalk from "chalk";
-import console from './home.js';
+import home from './home.js';
 
-console();
+await home();
