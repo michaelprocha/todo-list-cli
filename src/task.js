@@ -10,7 +10,7 @@ export default class Task {
 			try {
 				const data = fs.readFileSync(fullPath, "utf8");
 				const tasks = JSON.parse(data).tasks;
-				this.id = assignId(...tasks);
+				this.id = assignId(...tasks).toString();
 			} catch (erro) {
 				console.error(chalk.bgRed(erro.message));
 			}
