@@ -2,6 +2,7 @@ import chalk from "chalk";
 import { readDatabase } from "./read.db.js";
 import Enquirer from "enquirer";
 import add from "./add.js";
+import remove from "./remove.js"
 
 const enquirer = new Enquirer();
 
@@ -27,7 +28,7 @@ export default async function home() {
 		console.log(`${menu.choice} else if 2`);
 		await home();
 	} else if (menu.choice === "Remover tarefa") {
-		console.log(`${menu.choice} else if 3`);
+		await remove();
 		await home();
 	} else if (menu.choice === "Completar tarefa") {
 		console.log(`${menu.choice} else if 4`);
