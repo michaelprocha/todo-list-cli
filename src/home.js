@@ -3,6 +3,7 @@ import { readDatabase } from "./read.db.js";
 import Enquirer from "enquirer";
 import add from "./add.js";
 import remove from "./remove.js"
+import complete from "./complete.js";
 
 const enquirer = new Enquirer();
 
@@ -31,7 +32,7 @@ export default async function home() {
 		await remove();
 		await home();
 	} else if (menu.choice === "Completar tarefa") {
-		console.log(`${menu.choice} else if 4`);
+		await complete();
 		await home();
 	} else {
 		console.log(`${menu.choice} else 5`);
