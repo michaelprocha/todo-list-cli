@@ -2,7 +2,7 @@ import Enquirer from "enquirer";
 import fs from "fs";
 import path from "path";
 import chalk from "chalk";
-import Task from "./task.js";
+import Task from "../task/task.js";
 
 const fullPath = path.join(process.cwd(), "src/database/db.json");
 const enquirer = new Enquirer();
