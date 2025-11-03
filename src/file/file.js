@@ -11,9 +11,9 @@ async function writeDatabase(formattedData) {
 	}
 }
 
-async function readDatabase(cb) {
+async function readDatabase() {
 	try {
-		return fs.readFileSync(fullPath, "utf8");
+		return JSON.parse(fs.readFileSync(fullPath, "utf8"));
 	} catch (error) {
 		throw error;
 	}
@@ -33,3 +33,5 @@ async function readDatabase(cb) {
 // 			});
 // 	});
 // }
+
+export { writeDatabase, readDatabase };

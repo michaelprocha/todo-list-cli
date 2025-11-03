@@ -24,7 +24,7 @@ async function questAdd() {
 		name: "name",
 		message: "Escreva o nome da tarefa",
 	});
-	return nameTask;
+	return nameTask.name;
 }
 
 async function questRemove() {

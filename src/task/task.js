@@ -1,30 +1,31 @@
-import fs from "fs";
-import path from "path";
 import chalk from "chalk";
-
-const fullPath = path.join(process.cwd(), "src/database/db.json");
+import { readDatabase } from "../file/file.js";
 
 export default class Task {
-	constructor(name) {
-		if (fs.existsSync(fullPath)) {
-			try {
-				const data = fs.readFileSync(fullPath, "utf8");
-				const tasks = JSON.parse(data).tasks;
-				this.id = assignId(...tasks).toString();
-			} catch (erro) {
-				console.error(chalk.bgRed(erro.message));
-			}
-		} else {
-			console.error(chalk.bgRed("Banco de dados não encontrado."));
-		}
+	constructor(id, name) {
+		this.id = id;
 		this.task = name;
-		this.createdAt = new Date().toLocaleDateString("pt-BR");
+		this.createdAt = new Date().toLocaleDateString("pt-BR");;
 		this.done = false;
+	}
+
+	static async create(name) {
+		try {
+			const data = await readDatabase();
+			// const tasksArray = [...data.tasks];
+			const id = assignId(...data.tasks);
+			const createdAt = new Date().toLocaleDateString("pt-BR");
+			const done = false;
+			return new Task(id, name);
+		} catch (error) {
+			console.error(chalk.bgRed(error.message));
+			throw error;
+		}
 	}
 }
 
 function randomId() {
-	return Math.floor(Math.random() * (1000000 - 1 + 1)) + 1;
+	return (Math.floor(Math.random() * (1000000 - 1 + 1)) + 1).toString();
 }
 
 function assignId() {
@@ -32,7 +33,7 @@ function assignId() {
 	const id = randomId();
 	let repeated = false;
 	tasks.forEach((task) => {
-		if (task === id) {
+		if (task.id === id) {
 			repeated = true;
 		}
 	});
