@@ -1,28 +1,10 @@
 {
   "tasks": [
     {
-      "id": "2525",
-      "task": "teste",
-      "createdAt": "15/04/2010",
-      "done": true
-    },
-    {
-      "id": "25253",
-      "task": "teste2",
-      "createdAt": "15/04/2010",
-      "done": false
-    },
-    {
       "id": "313569",
       "task": "teste3",
       "createdAt": "02/11/2025",
       "done": true
-    },
-    {
-      "id": "155112",
-      "task": "testeAdd",
-      "createdAt": "03/11/2025",
-      "done": false
     }
   ]
-}
+} 

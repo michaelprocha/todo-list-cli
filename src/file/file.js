@@ -7,7 +7,7 @@ async function writeDatabase(formattedData) {
 	try {
 		await fs.promises.writeFile(fullPath, JSON.stringify(formattedData, null, 2));
 	} catch (error) {
-		throw new error();
+		throw error;
 	}
 }
 
@@ -18,20 +18,5 @@ async function readDatabase() {
 		throw error;
 	}
 }
-
-// function writeDatabase(formattedData) {
-// 	return new Promise((resolve, reject) => {
-// 		fs.promises
-// 			.writeFile(fullPath, JSON.stringify(formattedData, null, 2))
-// 			.then(() => {
-// 				console.log(chalk.bgGreen("Tarefa adicionada com sucesso!"));
-// 				resolve(true);
-// 			})
-// 			.catch((erro) => {
-// 				console.error(chalk.bgRed(erro.message));
-// 				reject(erro);
-// 			});
-// 	});
-// }
 
 export { writeDatabase, readDatabase };
