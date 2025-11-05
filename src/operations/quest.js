@@ -44,6 +44,24 @@ async function checkedTaks() {
 	return checked.id;
 }
 
+async function renameTaks() {
+	const renamed = await enquirer.prompt({
+		type: "input",
+		name: "id",
+		message: `Digite o id da tarefa que deseja renomear ou cancele digitando "Cancelar":`,
+	});
+	return renamed.id;
+}
+
+async function renamed() {
+	const renamed = await enquirer.prompt({
+		type: "input",
+		name: "new",
+		message: `Digite o novo nome da tarefa":`,
+	});
+	return renamed.new;
+}
+
 async function questEdit() {
 	const menu = await enquirer.prompt({
 		type: "select",
@@ -57,4 +75,4 @@ async function questEdit() {
 	return menu.choice;
 }
 
-export { questMenu, questAdd, questRemove, questEdit, checkedTaks };
+export { questMenu, questAdd, questRemove, questEdit, checkedTaks, renameTaks, renamed };
