@@ -1,9 +1,13 @@
-function tableView(data) {
-	const formattedData = JSON.parse(data).tasks;
-	var table = new Table({
+import Table from "cli-table3";
+import chalk from "chalk";
+import { readDatabase } from "../file/file.js";
+
+export default async function tableView() {
+	const data = await readDatabase();
+	let table = new Table({
 		head: [chalk.blue("ID"), chalk.blue("Tarefa"), chalk.blue("Criado"), chalk.blue("Finalizado")],
 	});
-	formattedData.forEach((task) => {
+	data.tasks.forEach((task) => {
 		if (task.done) {
 			table.push([chalk.green(task.id), chalk.green(task.task), chalk.green(task.createdAt), chalk.green(task.done)]);
 		} else {

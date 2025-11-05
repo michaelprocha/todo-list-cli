@@ -3,9 +3,10 @@ import path from "path";
 
 const fullPath = path.join(process.cwd(), "src/database/db.json");
 
-async function writeDatabase(formattedData) {
+async function writeDatabase(data) {
 	try {
-		await fs.promises.writeFile(fullPath, JSON.stringify(formattedData, null, 2));
+		const formattedData = JSON.stringify(data, null, 2);
+		await fs.promises.writeFile(fullPath, formattedData);
 	} catch (error) {
 		throw error;
 	}
@@ -13,7 +14,8 @@ async function writeDatabase(formattedData) {
 
 async function readDatabase() {
 	try {
-		return JSON.parse(fs.readFileSync(fullPath, "utf8"));
+		const data = fs.readFileSync(fullPath, "utf8");
+		return JSON.parse(data);
 	} catch (error) {
 		throw error;
 	}

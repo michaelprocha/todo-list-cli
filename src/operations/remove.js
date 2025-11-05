@@ -19,7 +19,7 @@ export default async function remove() {
 			
 		} else {
 			data.tasks = [...newData];
-			writeDatabase(data);
+			await writeDatabase(data);
 			console.log(chalk.bgGreen("Tarefa removida!"));
 		}
 	} catch (error) {
