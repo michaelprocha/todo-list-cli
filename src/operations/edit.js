@@ -1,6 +1,7 @@
 import { questEdit, checkedTaks, renameTaks, renamed } from "./quest.js";
 import { readDatabase, writeDatabase } from "../file/file.js";
 import chalk from "chalk";
+import clear from "clear";
 
 export default async function edit() {
 	const response = await questEdit();
@@ -27,11 +28,14 @@ async function complete() {
 		if (taskChanged) {
 			data.tasks = [...newDataArray];
 			await writeDatabase(data);
+			clear();
 			console.log(chalk.bgGreen("Operação concluida com sucesso!"));
 		} else {
 			if (response === "Cancelar" || response === "cancelar" || response === "CANCELAR") {
+				clear();
 				console.log(chalk.bgGreen("Operação cancelada!"));
 			} else {
+				clear();
 				console.error(chalk.bgRed("ID incorreto! por favor verifique o id e tente novamente!"));
 			}
 		}
@@ -45,6 +49,7 @@ async function rename() {
 	const data = await readDatabase();
 
 	if (response === "Cancelar" || response === "cancelar" || response === "CANCELAR") {
+		clear();
 		console.log(chalk.bgGreen("Operação cancelada!"));
 	} else {
 		const newName = await renamed();
@@ -58,11 +63,13 @@ async function rename() {
 		});
 
 		if (!wasRenamed) {
+			clear();
 			console.error(chalk.bgRed("ID incorreto! por favor verifique o id e tente novamente!"));
 			return;
 		}
 
 		await writeDatabase(data);
+		clear();
 		console.log(chalk.bgGreen("Operação concluida com sucesso!"));
 	}
 }

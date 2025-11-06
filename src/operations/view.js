@@ -9,9 +9,9 @@ export default async function tableView() {
 	});
 	data.tasks.forEach((task) => {
 		if (task.done) {
-			table.push([chalk.green(task.id), chalk.green(task.task), chalk.green(task.createdAt), chalk.green(task.done)]);
+			table.push([chalk.green(task.id), chalk.green(task.task), chalk.green(task.createdAt), chalk.green("Sim")]);
 		} else {
-			table.push([chalk.red(task.id), chalk.red(task.task), chalk.red(task.createdAt), chalk.red(task.done)]);
+			table.push([chalk.red(task.id), chalk.red(task.task), chalk.red(task.createdAt), chalk.red("Não")]);
 		}
 	});
 	console.log(table.toString());
